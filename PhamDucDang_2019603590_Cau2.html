@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="">
+        <table border="1">
+            <tr>
+                <th colspan="2">SẮP XẾP THEO QUY LUẬT</th>
+            </tr>
+            <tr>
+                <td>Nhập câu ban đầu:</td>
+                <td><input type="text" id="cauBanDau"></td>
+            </tr>
+            <tr>
+                <td>Câu sau khi sắp lại:</td>
+                <td><input type="text" id="cauSauKhiSap" disabled></td>
+            </tr>
+            <tr>
+                <th colspan="2">
+                    <button type="reset">Xóa</button>
+                    <button type="button" id="vietLai">Viết lại</button>
+                </th>
+            </tr>
+        </table>
+    </form>
+
+    <script>
+        
+        document.getElementById("vietLai").onclick = function(){
+            const cau1 = document.getElementById("cauBanDau");
+            const cau2 = document.getElementById("cauSauKhiSap");
+            
+            let chuoiBanDau = cau1.value;
+            let chuoiMoi = "";
+            
+
+            if(chuoiBanDau){
+                chuoiBanDau = " " + chuoiBanDau;
+                let mang = chuoiBanDau.split(" ");
+                let mangmoi = [];
+                let i=0;
+                let check = true;
+                for (let index = 0; index < mang.length; index++) {
+                    const element = mang[index];
+                    if(element!= ""){
+                        mangmoi[i] = mang[index];
+                        i++;
+                        if(element.length > 10)
+                            check = false;
+                    }
+                }
+
+                if(i > 20){
+                    alert("Chuỗi không được quá 20 từ")
+                    return;
+                }
+                if(!check){
+                    alert("Từ không được quá 10 ký tự")
+                    return;
+                }
+
+                mangmoi = mangmoi.sort();
+                console.log(mangmoi);
+                
+                for (let j = 0; j < mangmoi.length; j++) {
+                    const element = mangmoi[j];
+                    chuoiMoi += element + " ";
+                }
+                
+                cau2.value = chuoiMoi;
+
+            }
+            else
+                alert("Vui lòng nhập chuỗi");            
+        }
+    </script>
+</body>
+</html>
